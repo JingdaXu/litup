@@ -14,10 +14,12 @@
           finished-text="没有更多了"
           @load="onLoad"
         >
-          <MyList></MyList>
+          <MyList :list="list"></MyList>
         </van-list>
       </van-tab>
-      <van-tab title="总收益率"> </van-tab>
+      <van-tab title="总收益率">
+        <MyList :list="list"></MyList>
+      </van-tab>
     </van-tabs>
   </div>
 </template>
@@ -31,40 +33,58 @@ export default {
   },
   data() {
     return {
-      active: 1,
+      active: 0,
+      list: [
+        {
+          status: "净多1.3倍",
+          exchange: "欧易",
+          userName: "TraderBeiyang",
+          signature: "这才是超短线魅力！",
+          accountMoney: 12814,
+          monthReturns: 23521,
+          monthIncome: 1223,
+        },
+        {
+          status: "净多1.3倍",
+          exchange: "欧易",
+          userName: "TraderBeiyang",
+          signature: "这才是超短线魅力！",
+          accountMoney: 12814,
+          monthReturns: 23521,
+          monthIncome: 1223,
+        },
+        {
+          status: "净多1.3倍",
+          exchange: "欧易",
+          userName: "TraderBeiyang",
+          signature: "这才是超短线魅力！",
+          accountMoney: 12814,
+          monthReturns: 23521,
+          monthIncome: 1223,
+        },
+        {
+          status: "净多1.3倍",
+          exchange: "欧易",
+          userName: "TraderBeiyang",
+          signature: "这才是超短线魅力！",
+          accountMoney: 12814,
+          monthReturns: 23521,
+          monthIncome: 1223,
+        },
+        {
+          status: "净多1.3倍",
+          exchange: "欧易",
+          userName: "TraderBeiyang",
+          signature: "这才是超短线魅力！",
+          accountMoney: 12814,
+          monthReturns: 23521,
+          monthIncome: 1223,
+        },
+      ],
     };
   },
 };
 </script>
 
 <style>
-.list-box {
-  background-color: white;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  margin-bottom: 15px;
-}
-.row1 {
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #ebedf0;
-}
-.row2 {
-  margin: 10px 0;
-}
-.text-left {
-  text-align: left;
-}
-.text {
-  color: #c8c9cc;
-}
-.black {
-  color: #000000;
-}
-.green {
-  color: #07c160;
-}
-.red {
-  color: #ee0a24;
-}
 </style>
