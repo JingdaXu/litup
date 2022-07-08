@@ -71,6 +71,9 @@ export default {
 </script>
 
 <style lang="less">
+@import "@/assets/less/common.less";
+@import "@/assets/less/varibles.less";
+
 .list-group {
   .list-box {
     background-color: white;
@@ -104,20 +107,6 @@ export default {
   .list-box:first-child {
     margin-top: 0;
   }
-  .text-left {
-    text-align: left;
-  }
-  .text {
-    color: #c8c9cc;
-  }
-  .black {
-    color: #000000;
-  }
-  .green {
-    color: #07c160;
-  }
-  .red {
-    color: #ee0a24;
-  }
+
 }
 </style>

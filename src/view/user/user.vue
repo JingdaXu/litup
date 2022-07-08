@@ -18,17 +18,29 @@
 
   <!-- TAB -->
   <van-tabs v-model:active="active" color="#1989fa">
-    <van-tab title="主页"> </van-tab>
+    <van-tab title="主页">
+      <Account />
+      <Profit />
+      <Contract />
+      <Operation />
+    </van-tab>
     <van-tab title="持仓"> </van-tab>
     <van-tab title="观点"> </van-tab>
   </van-tabs>
 </template>
 
 <script>
+import Account from "./components/Account";
+import Profit from "./components/Profit";
+import Contract from "./components/Contract";
+import Operation from "./components/Operation";
 export default {
   name: "MyUser",
   components: {
-    // Account,
+    Account,
+    Profit,
+    Contract,
+    Operation,
   },
   data() {
     return {
