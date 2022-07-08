@@ -1,19 +1,18 @@
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-  <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
+  <!-- 路由跳转页 -->
   <router-view />
+  <!-- 底部选项 -->
+  <van-tabbar route>
+    <van-tabbar-item icon="home-o" replace to="/home">首页</van-tabbar-item>
+    <van-tabbar-item icon="friends-o" replace to="/user">用户</van-tabbar-item>
+    <van-tabbar-item icon="points" replace to="/order">持仓</van-tabbar-item>
+  </van-tabbar>
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld.vue";
-// import Home from "./components/Home.vue";
-
 export default {
   name: "App",
-  components: {
-    // HelloWorld,
-    // Home
-  },
+  components: {},
 };
 </script>
 
