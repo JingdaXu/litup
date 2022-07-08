@@ -7,6 +7,7 @@ import { Image as VanImage } from 'vant';
 import { List } from 'vant';
 import { Tab, Tabs } from 'vant';
 import { Tabbar, TabbarItem } from 'vant';
+import { Step, Steps } from 'vant';
 
 const app = createApp(App);
 
@@ -20,5 +21,6 @@ app.use(Tab);
 app.use(Tabs);
 app.use(Tabbar);
 app.use(TabbarItem);
-
+app.use(Step);
+app.use(Steps);
 app.mount('#app')
