@@ -1,21 +1,14 @@
 <template>
   <!-- 首页 -->
   <div>
-    <van-row>
+    <!-- <van-row>
       <van-col span="8"> HOME </van-col>
-    </van-row>
+    </van-row> -->
     <!-- TAB -->
-    <van-tabs v-model:active="active">
+    <van-tabs v-model:active="active" color="#1989fa">
       <van-tab title="月收益率">
         <!-- LIST -->
-        <van-list
-          v-model:loading="loading"
-          :finished="finished"
-          finished-text="没有更多了"
-          @load="onLoad"
-        >
-          <MyList :list="list"></MyList>
-        </van-list>
+        <MyList :list="list"></MyList>
       </van-tab>
       <van-tab title="总收益率">
         <MyList :list="list"></MyList>
@@ -25,7 +18,7 @@
 </template>
 
 <script>
-import MyList from "@/components/List";
+import MyList from "./components/List";
 export default {
   name: "HOME",
   components: {
@@ -83,6 +76,7 @@ export default {
       ],
     };
   },
+  methods: {},
 };
 </script>
 

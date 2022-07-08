@@ -11,7 +11,7 @@ const routes = [
   {
     name: 'user',
     path: '/user',
-    component: () => import('./view/user'),
+    component: () => import('./view/user/user'),
     meta: {
       title: '用户中心',
     },
@@ -19,7 +19,7 @@ const routes = [
   {
     name: 'order',
     path: '/order',
-    component: () => import('./view/order'),
+    component: () => import('./view/order/order'),
     meta: {
       title: '合约',
     },
@@ -27,7 +27,7 @@ const routes = [
   {
     name: 'home',
     path: '/home',
-    component: () => import('./view/home'),
+    component: () => import('./view/home/home'),
     meta: {
       title: '首页',
     },
