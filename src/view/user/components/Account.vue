@@ -1,5 +1,5 @@
 <template>
-  <div class="account">
+  <div class="module">
     <div class="title">账户概况</div>
     <van-row class="row1">
       <van-col span="12">
@@ -53,18 +53,20 @@ export default {
 @import "@/assets/less/common.less";
 @import "@/assets/less/varibles.less";
 
-.account {
+.module {
   background: white;
-  padding: 15px;
   .title {
+    padding: 15px;
     text-align: left;
-    border-bottom: 3px solid @grey;
+    border-bottom: 1px solid @grey;
   }
   .row1,
   .row2,
   .row3 {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    // margin-top: 15px;
+    // margin-bottom: 15px;
+    padding: 15px  0;
+    overflow: hidden;
   }
 }
 </style>
