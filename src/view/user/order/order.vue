@@ -3,12 +3,8 @@
 <template>
   <div class="container">
     <van-tabs type="card" v-model:active="active" color="#969799" shrink>
-      <van-tab title="当前持仓">
-        <orderList :list="list" v-if="list.length"
-      /></van-tab>
-      <van-tab title="历史持仓">
-        <orderList :list="list" v-if="list.length"
-      /></van-tab>
+      <van-tab title="当前持仓"> <orderList :list="list" /></van-tab>
+      <van-tab title="历史持仓"> <orderList :list="list" /></van-tab>
     </van-tabs>
   </div>
 </template>
@@ -24,12 +20,11 @@ export default {
   setup() {
     let list = ref([]);
     const active = ref(0);
-    const getApi = () => {
-      apiGetOrder().then((res) => {
-        list = res.data;
+    const getApi = async () => {
+      await apiGetOrder().then((res) => {
+        list.value = res.data;
       });
     };
-    console.log(list);
     onMounted(() => {
       getApi();
     });

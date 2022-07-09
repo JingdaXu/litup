@@ -12,8 +12,11 @@ import { Tag } from 'vant';
 import { NavBar } from 'vant';
 import { Divider } from 'vant';
 
+// import moment from "moment";
+
 const app = createApp(App);
 
+// app.prototype.$moment = moment;
 app.use(Cell);
 app.use(CellGroup);
 app.use(Button);

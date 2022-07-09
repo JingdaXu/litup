@@ -1,30 +1,38 @@
 <template>
- list {{list}}
   <div class="order-box" v-for="(item, index) in list" :key="index">
     <van-row class="row1">
       <van-col :span="12" class="left">
-        <span>{{ item.name }}</span>
-        <van-tag type="success">{{ item.number1 }}</van-tag>
+        <span>{{ item.symbol }}-{{ item.contract }}</span>
+        <van-tag type="success">
+          {{
+            item.direction == "long" ? "多" : "空 " + item["margin-level"]
+          }}倍</van-tag
+        >
       </van-col>
       <van-col :span="12" class="right" @click="clickDetails(item, index)">
-        <span class="time">{{ item.time }}</span>
+        <span class="time">{{ item["latest-action"]}}</span>
+        <!-- <span class="time">{{ $moment(item["latest-action"]).format("YYYY-MM-DD") }}</span> -->
         <span class="arrow"><van-icon name="arrow" /></span>
       </van-col>
     </van-row>
     <div class="row2">
       <van-row>
         <van-col :span="6">开仓均价</van-col>
-        <van-col :span="6" class="number">￥{{ item.price }}</van-col>
+        <van-col :span="6" class="number"
+          >￥{{ item["average-price-o"] }}</van-col
+        >
         <van-col :span="6">收益率</van-col>
-        <van-col :span="6" class="number green">{{ item.rate }}</van-col>
+        <van-col :span="6" class="number green">{{ item.pnl * 100 }}%</van-col>
       </van-row>
     </div>
     <div class="row3">
       <van-row>
         <van-col :span="6">平仓均价</van-col>
-        <van-col :span="6" class="number">￥{{ item.number2 }}</van-col>
+        <van-col :span="6" class="number"
+          >￥{{ item["average-price-c"] }}</van-col
+        >
         <van-col :span="6">收益</van-col>
-        <van-col :span="6" class="number green">{{ item.income }}</van-col>
+        <van-col :span="6" class="number green">{{ item['pnl-usdt'] }}USDT</van-col>
       </van-row>
     </div>
   </div>
@@ -45,7 +53,7 @@ export default {
   },
   setup() {
     const router = useRouter();
-    const clickDetails = item => {
+    const clickDetails = (item) => {
       router.push({ name: "orderDetail", params: { orderId: item.id } });
     };
     return {
