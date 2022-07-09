@@ -17,14 +17,6 @@ const routes = [
     },
   },
   {
-    name: 'order',
-    path: '/order',
-    component: () => import('./view/order/order'),
-    meta: {
-      title: '合约',
-    },
-  },
-  {
     name: 'home',
     path: '/home',
     component: () => import('./view/home/home'),

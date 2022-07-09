@@ -24,7 +24,9 @@
       <Contract />
       <Operation />
     </van-tab>
-    <van-tab title="持仓"> </van-tab>
+    <van-tab title="持仓">
+      <Order /> 
+    </van-tab>
     <van-tab title="观点"> </van-tab>
   </van-tabs>
 </template>
@@ -34,6 +36,7 @@ import Account from "./components/Account";
 import Profit from "./components/Profit";
 import Contract from "./components/Contract";
 import Operation from "./components/Operation";
+import Order from "./order/order";
 export default {
   name: "MyUser",
   components: {
@@ -41,6 +44,7 @@ export default {
     Profit,
     Contract,
     Operation,
+    Order
   },
   data() {
     return {
