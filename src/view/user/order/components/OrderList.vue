@@ -3,16 +3,19 @@
     <van-row class="row1">
       <van-col :span="12" class="left">
         <span>{{ item.name }}</span>
-        <span>{{ item.number1 }}</span>
+        <van-tag type="success">{{ item.number1 }}</van-tag>
       </van-col>
-      <van-col :span="12" class="right"> {{ item.time }}</van-col>
+      <van-col :span="12" class="right" @click="clickDetails(item, index)">
+        <span class="time">{{ item.time }}</span>
+        <span class="arrow"><van-icon name="arrow" /></span>
+      </van-col>
     </van-row>
     <div class="row2">
       <van-row>
         <van-col :span="6">开仓均价</van-col>
         <van-col :span="6" class="number">￥{{ item.price }}</van-col>
         <van-col :span="6">收益率</van-col>
-        <van-col :span="6" class="green">{{ item.rate }}</van-col>
+        <van-col :span="6" class="number green">{{ item.rate }}</van-col>
       </van-row>
     </div>
     <div class="row3">
@@ -20,7 +23,7 @@
         <van-col :span="6">平仓均价</van-col>
         <van-col :span="6" class="number">￥{{ item.number2 }}</van-col>
         <van-col :span="6">收益</van-col>
-        <van-col :span="6" class="green">{{ item.income }}</van-col>
+        <van-col :span="6" class="number green">{{ item.income }}</van-col>
       </van-row>
     </div>
   </div>
@@ -80,6 +83,12 @@ export default {
       ],
     };
   },
+  methods:{
+    clickDetails(item, index){
+        console.log(item)
+        console.log(index)
+    }
+  }
 };
 </script>
 
@@ -89,11 +98,14 @@ export default {
 .row1 {
   margin-bottom: 10px;
   .left {
-    font-size: 18px;
+    font-size: 16px;
     padding: 5px;
+    span {
+      padding: 2px;
+    }
     span:last-child {
-      padding: 5px;
-      background-color: @green;
+      display: inline-block;
+      margin-left: 5px;
       color: white;
       border-radius: 5px;
     }
@@ -102,14 +114,23 @@ export default {
     font-size: 16px;
     padding: 5px;
     text-align: right;
+    .time {
+      display: inline-block;
+      margin-right: 10px;
+      color: @text-color-main2;
+    }
+    .arrow {
+      color: @text-color-main2;
+    }
   }
 }
 .row2,
 .row3 {
+  font-size: 14px;
   padding: 5px;
   color: @text-color-main2;
   .number {
-    color: @text-color-main1;
+    text-align: center;
   }
 }
 .order-box {

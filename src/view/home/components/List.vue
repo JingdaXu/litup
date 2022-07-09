@@ -50,6 +50,8 @@
 </template>
 
 <script>
+import { ref } from "vue";
+// import { toRefs } from 'vue'
 export default {
   name: "MyList",
   props: {
@@ -60,11 +62,25 @@ export default {
       },
     },
   },
-  data() {
+  setup(props) {
+    const loading = ref(false);
+    const finished = ref(false);
+    const isPositive = ref(true);
+    const onLoad = () => {
+      setTimeout(() => {
+        // 加载状态结束
+        loading.value = false;
+        // 数据全部加载完成
+        if (props.list.length >= 40) {
+          finished.value = true;
+        }
+      }, 1000);
+    };
     return {
-      isPositive: true,
-      loading: false,
-      finished: true,
+      onLoad,
+      loading,
+      finished,
+      isPositive
     };
   },
 };
@@ -107,6 +123,5 @@ export default {
   .list-box:first-child {
     margin-top: 0;
   }
-
 }
 </style>

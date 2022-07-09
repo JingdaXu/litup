@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <van-tabs type="card" v-model:active="active" color="#1989fa">
+    <van-tabs type="card" v-model:active="active" color="#969799" shrink>
       <van-tab title="当前持仓"> <OrderList /></van-tab>
       <van-tab title="历史持仓"> <OrderList /></van-tab>
     </van-tabs>

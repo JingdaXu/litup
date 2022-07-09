@@ -69,7 +69,7 @@ export default {
   .box-list {
     .box {
       border: 1px solid #dcdee0;
-      margin:10px 10px;
+      margin:10px 5px;
       .contractName{
         color:@green;
         padding: 5px 2px;
