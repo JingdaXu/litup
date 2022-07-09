@@ -54,7 +54,7 @@ export default {
   setup() {
     const router = useRouter();
     const clickDetails = (item) => {
-      router.push({ name: "orderDetail", params: { orderId: item.id } });
+      router.push({ name: "orderDetail", query: { orderId: item.order } });
     };
     return {
       clickDetails,
