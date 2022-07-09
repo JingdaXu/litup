@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter,createWebHistory } from 'vue-router';
 
 const routes = [
   {
@@ -17,6 +17,14 @@ const routes = [
     },
   },
   {
+    name: 'orderDetail',
+    path: '/orderDetail',
+    component: () => import('./view/user/orderDetail/orderDetail'),
+    meta: {
+      title: '持仓详情',
+    },
+  },
+  {
     name: 'home',
     path: '/home',
     component: () => import('./view/home/home'),
@@ -27,9 +35,8 @@ const routes = [
 ];
 
 const router = createRouter({
-  mode: 'history',
   routes,
-  history: createWebHashHistory(),
+  history: createWebHistory(),
 });
 
 router.beforeEach((to, from, next) => {

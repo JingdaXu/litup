@@ -9,15 +9,15 @@
 
 <script>
 import OrderList from "./components/OrderList";
+import { ref } from "vue";
 export default {
   name: "MyOrder",
   components: {
     OrderList,
   },
-  data() {
-    return {
-      active: 0,
-    };
+  setup() {
+    const active = ref(0);
+    return { active };
   },
 };
 </script>

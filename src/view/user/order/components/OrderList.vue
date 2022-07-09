@@ -30,65 +30,66 @@
 </template>
 
 <script>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 export default {
   name: "orderList",
-  data() {
-    return {
-      orderList: [
-        {
-          name: "BCH-USDT-SWAP",
-          number1: "多20倍",
-          time: "06-24 16:36",
-          price: "773.31",
-          rate: "+7.58835375",
-          number2: "778.83",
-          income: "+7.5883535",
-        },
-        {
-          name: "BCH-USDT-SWAP",
-          number1: "多20倍",
-          time: "06-24 16:36",
-          price: "773.31",
-          rate: "+7.58835375",
-          number2: "778.83",
-          income: "+7.5883535",
-        },
-        {
-          name: "BCH-USDT-SWAP",
-          number1: "多20倍",
-          time: "06-24 16:36",
-          price: "773.31",
-          rate: "+7.58835375",
-          number2: "778.83",
-          income: "+7.5883535",
-        },
-        {
-          name: "BCH-USDT-SWAP",
-          number1: "多20倍",
-          time: "06-24 16:36",
-          price: "773.31",
-          rate: "+7.58835375",
-          number2: "778.83",
-          income: "+7.5883535",
-        },
-        {
-          name: "BCH-USDT-SWAP",
-          number1: "多20倍",
-          time: "06-24 16:36",
-          price: "773.31",
-          rate: "+7.58835375",
-          number2: "778.83",
-          income: "+7.5883535",
-        },
-      ],
+  setup() {
+    const orderList = ref([
+      {
+        name: "BCH-USDT-SWAP",
+        number1: "多20倍",
+        time: "06-24 16:36",
+        price: "773.31",
+        rate: "+7.58835375",
+        number2: "778.83",
+        income: "+7.5883535",
+      },
+      {
+        name: "BCH-USDT-SWAP",
+        number1: "多20倍",
+        time: "06-24 16:36",
+        price: "773.31",
+        rate: "+7.58835375",
+        number2: "778.83",
+        income: "+7.5883535",
+      },
+      {
+        name: "BCH-USDT-SWAP",
+        number1: "多20倍",
+        time: "06-24 16:36",
+        price: "773.31",
+        rate: "+7.58835375",
+        number2: "778.83",
+        income: "+7.5883535",
+      },
+      {
+        name: "BCH-USDT-SWAP",
+        number1: "多20倍",
+        time: "06-24 16:36",
+        price: "773.31",
+        rate: "+7.58835375",
+        number2: "778.83",
+        income: "+7.5883535",
+      },
+      {
+        name: "BCH-USDT-SWAP",
+        number1: "多20倍",
+        time: "06-24 16:36",
+        price: "773.31",
+        rate: "+7.58835375",
+        number2: "778.83",
+        income: "+7.5883535",
+      },
+    ]);
+    const router = useRouter();
+    const clickDetails = (item, index) => {
+      console.log(item);
+      console.log(index);
+      router.push({ name: "orderDetail", params: { orderId: item.id } });
     };
+    return { orderList, clickDetails };
   },
-  methods:{
-    clickDetails(item, index){
-        console.log(item)
-        console.log(index)
-    }
-  }
 };
 </script>
 
