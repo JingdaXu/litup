@@ -1,6 +1,7 @@
 const { VantResolver } = require('unplugin-vue-components/resolvers');
 const ComponentsPlugin = require('unplugin-vue-components/webpack');
 const path = require('path');
+
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
@@ -25,10 +26,7 @@ module.exports = {
   devServer: {
     port: '3334',
     open: true,
-    host: '0.0.0.0',
-    client: {
-      webSocketURL: 'ws://0.0.0.0:8081/ws',
-    },
+    host: 'localhost',
     proxy: {
       '/api': {
         target: 'http://dev.coder-spring.litup.me:12500/',

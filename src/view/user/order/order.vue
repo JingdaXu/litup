@@ -1,34 +1,42 @@
+
+
 <template>
   <div class="container">
     <van-tabs type="card" v-model:active="active" color="#969799" shrink>
-      <van-tab title="当前持仓"> <OrderList /></van-tab>
-      <van-tab title="历史持仓"> <OrderList /></van-tab>
+      <van-tab title="当前持仓">
+        <orderList :list="list" v-if="list.length"
+      /></van-tab>
+      <van-tab title="历史持仓">
+        <orderList :list="list" v-if="list.length"
+      /></van-tab>
     </van-tabs>
   </div>
 </template>
-
-<script>
-import OrderList from "./components/OrderList";
-import { ref } from "vue";
+<script >
+import orderList from "./components/OrderList";
+import { onMounted, ref } from "vue";
 import { apiGetOrder } from "@/api/order";
-// import axios from "@/service";
 export default {
-  name: "MyOrder",
+  name: "orderPage",
   components: {
-    OrderList,
+    orderList,
   },
   setup() {
+    let list = ref([]);
     const active = ref(0);
-    apiGetOrder().then((res) => {
-      console.log(res);
+    const getApi = () => {
+      apiGetOrder().then((res) => {
+        list = res.data;
+      });
+    };
+    console.log(list);
+    onMounted(() => {
+      getApi();
     });
-    // axios
-    //   .get("http://dev.coder-spring.litup.me:12500/order/", "{of_user}")
-    //   .then((res) => {
-    //     console.log(res);
-    //   });
-
-    return { active };
+    return {
+      list,
+      active,
+    };
   },
 };
 </script>
