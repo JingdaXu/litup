@@ -10,7 +10,8 @@
 <script>
 import OrderList from "./components/OrderList";
 import { ref } from "vue";
-import { apiGetOrder } from '@/api/order'
+import { apiGetOrder } from "@/api/order";
+// import axios from "@/service";
 export default {
   name: "MyOrder",
   components: {
@@ -18,9 +19,14 @@ export default {
   },
   setup() {
     const active = ref(0);
-    apiGetOrder('of_user').then((res) => {
+    apiGetOrder().then((res) => {
       console.log(res);
     });
+    // axios
+    //   .get("http://dev.coder-spring.litup.me:12500/order/", "{of_user}")
+    //   .then((res) => {
+    //     console.log(res);
+    //   });
 
     return { active };
   },

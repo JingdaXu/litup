@@ -1,10 +1,9 @@
-import http from "@/service";
+import service from "@/service";
 
 // 获取用户信息
-export function apiGetOrder(param) {
-    return http({
-        url: '/order',
+export function apiGetOrder() {
+    return service({
+        url: '/api/order/of_user',
         method: 'get',
-        data: param,
     })
 }

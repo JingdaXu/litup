@@ -23,13 +23,21 @@ module.exports = {
       .set("@", resolve("src"))
   },
   devServer: {
-    port: 8080,
+    port: '3334',
+    open: true,
+    host: '0.0.0.0',
+    client: {
+      webSocketURL: 'ws://0.0.0.0:8081/ws',
+    },
     proxy: {
-      '/': {
-        target: 'https://dev.coder-spring.litup.me:12500/',
+      '/api': {
+        target: 'http://dev.coder-spring.litup.me:12500/',
+        ws: false,
         changeOrigin: true,
+        pathRewrite:{
+          '^/api': ''
+        }
       }
     }
-
   }
 };
