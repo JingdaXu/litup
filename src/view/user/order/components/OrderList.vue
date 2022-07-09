@@ -93,7 +93,7 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 @import "@/assets/less/common.less";
 @import "@/assets/less/varibles.less";
 .row1 {

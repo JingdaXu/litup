@@ -9,6 +9,8 @@ import { Tab, Tabs } from 'vant';
 import { Tabbar, TabbarItem } from 'vant';
 import { Step, Steps } from 'vant';
 import { Tag } from 'vant';
+import { NavBar } from 'vant';
+import { Divider } from 'vant';
 
 const app = createApp(App);
 
@@ -25,4 +27,6 @@ app.use(TabbarItem);
 app.use(Step);
 app.use(Steps);
 app.use(Tag);
+app.use(NavBar);
+app.use(Divider);
 app.mount('#app')
