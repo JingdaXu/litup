@@ -107,11 +107,12 @@ export default {
 @import "@/assets/less/varibles.less";
 .detail {
   background: white;
+  .number {
+    font-size: 24px;
+  }
 }
-.number {
-  font-size: 24px;
-}
-.bottom{
+
+.bottom {
   text-align: center;
   margin-top: 10px;
 }

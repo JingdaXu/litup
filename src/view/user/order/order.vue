@@ -10,6 +10,7 @@
 <script>
 import OrderList from "./components/OrderList";
 import { ref } from "vue";
+import { apiGetOrder } from '@/api/order'
 export default {
   name: "MyOrder",
   components: {
@@ -17,6 +18,10 @@ export default {
   },
   setup() {
     const active = ref(0);
+    apiGetOrder('of_user').then((res) => {
+      console.log(res);
+    });
+
     return { active };
   },
 };
