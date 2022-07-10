@@ -8,10 +8,10 @@
     <van-tabs v-model:active="active" color="#1989fa">
       <van-tab title="月收益率">
         <!-- LIST -->
-        <MyList :list="list"></MyList>
+        <MyList :list="list1" :type="'monthly'"></MyList>
       </van-tab>
       <van-tab title="总收益率">
-        <MyList :list="list"></MyList>
+        <MyList :list="list2" :type="'total'"></MyList>
       </van-tab>
     </van-tabs>
   </div>
@@ -19,64 +19,44 @@
 
 <script>
 import MyList from "./components/List";
+import { apiGetHome } from "@/api/home";
+import { onMounted, onUpdated, ref, reactive } from "vue";
+
 export default {
   name: "HOME",
   components: {
     MyList,
   },
-  data() {
+  setup() {
+    let list1 = ref([]);
+    let list2 = ref([]);
+    const active = ref(0);
+    const getApi = async () => {
+      const params = reactive({
+        sortby: active.value === 0 ? "monthly" : "total",
+      });
+      console.log(params);
+      await apiGetHome(params).then((res) => {
+        console.log(active.value);
+        if(active.value === 0){
+          list1.value = res.data;
+        }else{
+          list2.value = res.data;
+        }
+      });
+    };
+    onMounted(() => {
+      getApi();
+    });
+    onUpdated(() => {
+      getApi();
+    });
     return {
-      active: 0,
-      list: [
-        {
-          status: "净多1.3倍",
-          exchange: "欧易",
-          userName: "TraderBeiyang",
-          signature: "这才是超短线魅力！",
-          accountMoney: 12814,
-          monthReturns: 23521,
-          monthIncome: 1223,
-        },
-        {
-          status: "净多1.3倍",
-          exchange: "欧易",
-          userName: "TraderBeiyang",
-          signature: "这才是超短线魅力！",
-          accountMoney: 12814,
-          monthReturns: 23521,
-          monthIncome: 1223,
-        },
-        {
-          status: "净多1.3倍",
-          exchange: "欧易",
-          userName: "TraderBeiyang",
-          signature: "这才是超短线魅力！",
-          accountMoney: 12814,
-          monthReturns: 23521,
-          monthIncome: 1223,
-        },
-        {
-          status: "净多1.3倍",
-          exchange: "欧易",
-          userName: "TraderBeiyang",
-          signature: "这才是超短线魅力！",
-          accountMoney: 12814,
-          monthReturns: 23521,
-          monthIncome: 1223,
-        },
-        {
-          status: "净多1.3倍",
-          exchange: "欧易",
-          userName: "TraderBeiyang",
-          signature: "这才是超短线魅力！",
-          accountMoney: 12814,
-          monthReturns: 23521,
-          monthIncome: 1223,
-        },
-      ],
+      list1,
+      list2,
+      active,
     };
   },
-  methods: {},
 };
 </script>
 

@@ -1,16 +1,7 @@
 
-
-<template>
-  <div class="container">
-    <van-tabs type="card" v-model:active="active" color="#969799" shrink>
-      <van-tab title="当前持仓"> <orderList :list="list" /></van-tab>
-      <van-tab title="历史持仓"> <orderList :list="list" /></van-tab>
-    </van-tabs>
-  </div>
-</template>
 <script >
 import orderList from "./components/OrderList";
-import { onMounted, ref } from "vue";
+import { onMounted, onUpdated, ref, reactive } from "vue";
 import { apiGetOrder } from "@/api/order";
 export default {
   name: "orderPage",
@@ -21,20 +12,69 @@ export default {
     let list = ref([]);
     const active = ref(0);
     const getApi = async () => {
-      await apiGetOrder().then((res) => {
+      const params = reactive({
+        filter: active.value === 0 ? "unfinished" : "finished",
+      });
+      await apiGetOrder(params).then((res) => {
         list.value = res.data;
       });
     };
     onMounted(() => {
       getApi();
     });
+    onUpdated(() => {
+      getApi();
+    });
+    const loading = ref(false);
+    const finished = ref(false);
+    const onLoad = () => {
+      setTimeout(() => {
+        // 加载状态结束
+        loading.value = false;
+        // 数据全部加载完成
+        if (list.value.length >= 2) {
+          finished.value = true;
+        }
+      }, 1000);
+    };
+
     return {
       list,
       active,
+      onLoad,
+      loading,
+      finished,
     };
   },
 };
 </script>
+<template>
+  <div class="container">
+    <van-tabs type="card" v-model:active="active" color="#969799" shrink>
+      <van-tab title="当前持仓">
+        <van-list
+          v-model:loading="loading"
+          :finished="finished"
+          finished-text="没有更多了"
+          @load="onLoad"
+        >
+          <orderList :list="list" />
+        </van-list>
+      </van-tab>
+      <van-tab title="历史持仓">
+        <van-list
+          v-model:loading="loading"
+          :finished="finished"
+          finished-text="没有更多了"
+          @load="onLoad"
+        >
+          <orderList :list="list" />
+        </van-list>
+      </van-tab>
+    </van-tabs>
+  </div>
+</template>
+
 
 <style lang="less">
 @import "@/assets/less/common.less";

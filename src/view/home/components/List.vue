@@ -9,8 +9,8 @@
     >
       <div v-for="(item, index) in list" :key="index" class="list-box">
         <van-row class="row1">
-          <span class="status">{{ item.status }}</span>
-          <span class="exchange"> {{ item.exchange }} </span>
+          <span class="status">{{ item["extra-info"].label1 }}</span>
+          <span class="exchange"> {{ item["extra-info"].label2 }} </span>
         </van-row>
         <van-row gutter="20" class="row2">
           <van-col span="4">
@@ -18,30 +18,43 @@
               round
               width="2rem"
               height="2rem"
-              src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+              :src="item.avatar"
             ></VanImage>
+            <!-- src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" -->
           </van-col>
           <van-col span="20">
-            <div class="text-left">{{ item.userName }}</div>
-            <div class="text-left">{{ item.signature }}</div>
+            <div class="text-left">{{ item.nick_name }}</div>
+            <div class="text-left">{{ item.motto }}</div>
           </van-col>
         </van-row>
         <van-row gutter="20" justify="space-between" class="row3">
           <van-col span="8">
-            <div class="black">￥{{ item.accountMoney }}</div>
+            <div class="black">￥{{ item.balance }}</div>
             <div class="text">账户资金</div>
           </van-col>
-          <van-col span="8">
+          <van-col span="8" v-if="type == 'monthly'">
             <div :class="{ red: !isPositive }" class="green">
-              {{ item.monthReturns }}%
+              {{ item["monthly-yield"] * 100 }}%
             </div>
             <div class="text">月收益率</div>
           </van-col>
-          <van-col span="8">
+          <van-col span="8" v-if="type == 'total'">
             <div :class="{ red: !isPositive }" class="green">
-              ￥{{ item.monthIncome }}
+              {{ item["total-yield"] * 100 }}%
+            </div>
+            <div class="text">年收益率</div>
+          </van-col>
+          <van-col span="8" v-if="type == 'monthly'">
+            <div :class="{ red: !isPositive }" class="green">
+              ￥{{ item["monthly-yield-in-unit"] }}
             </div>
             <div class="text">月收益额</div>
+          </van-col>
+          <van-col span="8" v-if="type == 'total'">
+            <div :class="{ red: !isPositive }" class="green">
+              ￥{{ item["total-yield-in-unit"] }}
+            </div>
+            <div class="text">年收益额</div>
           </van-col>
         </van-row>
       </div>
@@ -61,6 +74,10 @@ export default {
         return [];
       },
     },
+    type: {
+      type: String,
+      default: "monthly",
+    },
   },
   setup(props) {
     const loading = ref(false);
@@ -71,7 +88,7 @@ export default {
         // 加载状态结束
         loading.value = false;
         // 数据全部加载完成
-        if (props.list.length >= 40) {
+        if (props.list.length >= 2) {
           finished.value = true;
         }
       }, 1000);
@@ -80,7 +97,7 @@ export default {
       onLoad,
       loading,
       finished,
-      isPositive
+      isPositive,
     };
   },
 };
