@@ -32,12 +32,10 @@ export default {
       const params = reactive({
         sortby: active.value === 0 ? "monthly" : "total",
       });
-      console.log(params);
       await apiGetHome(params).then((res) => {
-        console.log(active.value);
-        if(active.value === 0){
+        if (active.value === 0) {
           list1.value = res.data;
-        }else{
+        } else {
           list2.value = res.data;
         }
       });

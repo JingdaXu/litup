@@ -5,13 +5,14 @@
         round
         width="4rem"
         height="4rem"
-        src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg"
+        :src="userObj.avatar"
       ></VanImage>
+      <!-- src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" -->
     </van-col>
     <van-col span="20">
       <div class="user-name">
-        <span>{{ userName }}</span>
-        <span><van-icon name="like-o" />{{ likeNumber }}</span>
+        <span>{{ userObj.nick_name }}</span>
+        <!-- <span><van-icon name="like-o" />{{ likeNumber }}</span> -->
       </div>
     </van-col>
   </van-row>
@@ -19,7 +20,7 @@
   <!-- TAB -->
   <van-tabs v-model:active="active" color="#1989fa">
     <van-tab title="主页">
-      <Account />
+      <Account :userObj='userObj'/>
       <Profit />
       <Contract />
       <Operation />
@@ -37,6 +38,9 @@ import Profit from "./components/Profit";
 import Contract from "./components/Contract";
 import Operation from "./components/Operation";
 import Order from "./order/order";
+import { apiGetUser } from "@/api/user";
+import { useRoute } from "vue-router";
+import { ref,onMounted } from "vue";
 export default {
   name: "MyUser",
   components: {
@@ -46,12 +50,24 @@ export default {
     Operation,
     Order,
   },
-  data() {
-    return {
-      userName: "啊皮量化",
-      active: 0,
-      likeNumber: 0,
+  setup() {
+    // 声明变量
+    const userObj = ref({});
+    const active = ref(0);
+    // 获得用户ID
+    const route = useRoute();
+    const id = route.query.userId;
+    const getApi = async () => {
+      // 调用户接口
+      await apiGetUser(id).then((res) => {
+        console.log(res);
+        userObj.value = res.data;
+      });
     };
+    onMounted(() => {
+      getApi();
+    });
+    return { userObj, active };
   },
 };
 </script>

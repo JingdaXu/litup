@@ -3,31 +3,31 @@
     <div class="title">账户概况</div>
     <van-row class="row1">
       <van-col span="12">
-        <div class="green bigFont">￥8433</div>
+        <div class="green bigFont">{{ userObj["balance"] }}</div>
         <div class="text smallFont">账户资产</div>
       </van-col>
       <van-col span="12">
-        <div class="green bigFont">25.16%</div>
+        <div class="green bigFont">{{ userObj["total-yield"] * 100 }} %</div>
         <div class="text smallFont">总收益率</div>
       </van-col>
     </van-row>
     <van-row class="row2 smallFont">
       <van-col span="8">
-        <div class="green">￥1745</div>
+        <div class="green">￥{{ userObj["total-yield-in-unit"] }}</div>
         <div class="text">累计收益</div>
       </van-col>
       <van-col span="8">
-        <div class="green">￥2002605.28%</div>
+        <div class="green">￥{{ numFilter(userObj["monthly-yield"]) }}%</div>
         <div class="text">月收益率</div>
       </van-col>
       <van-col span="8">
-        <div class="green">￥6688</div>
+        <div class="green">￥{{ userObj["total-refill"] }}</div>
         <div class="text">充值金额</div>
       </van-col>
     </van-row>
     <van-row class="row3 smallFont">
       <van-col span="8">
-        <div class="">90.48%</div>
+        <div class="">{{ userObj["win-rate"] }}%</div>
         <div class="text">历史胜率</div>
       </van-col>
       <van-col span="8"></van-col>
@@ -36,18 +36,24 @@
   </div>
 </template>
 
-<script>
+<script >
 export default {
   name: "MyAccount",
-  data() {
-    return {
-      userName: "",
-      active: 0,
-      likeNumber: 0,
-    };
+  props: {
+    userObj: {
+      type: Object,
+    },
   },
+  methods: {
+    numFilter(value) {
+      const realVal = parseFloat(value*100).toFixed(2);
+      return realVal;
+    },
+  },
+  setup() {},
 };
 </script>
+
 
 <style lang="less">
 @import "@/assets/less/common.less";

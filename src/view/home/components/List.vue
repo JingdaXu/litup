@@ -39,7 +39,7 @@
           </van-col>
           <van-col span="8" v-if="type == 'monthly'">
             <div :class="{ red: !isPositive }" class="green">
-              {{ item["monthly-yield"] * 100 }}%
+              {{ numFilter(item["monthly-yield"]) }}%
             </div>
             <div class="text">月收益率</div>
           </van-col>
@@ -84,12 +84,19 @@ export default {
       default: "monthly",
     },
   },
+  methods: {
+    numFilter(value) {
+      const realVal = parseFloat(value * 100).toFixed(2);
+      return realVal;
+    },
+  },
   setup(props) {
     const loading = ref(false);
     const finished = ref(false);
     const isPositive = ref(true);
     const router = useRouter();
     const clickDetails = (item) => {
+      console.log(item);
       router.push({ name: "user", query: { userId: item._id } });
     };
     const onLoad = () => {
