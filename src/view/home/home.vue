@@ -1,9 +1,6 @@
 <template>
   <!-- 首页 -->
   <div>
-    <!-- <van-row>
-      <van-col span="8"> HOME </van-col>
-    </van-row> -->
     <!-- TAB -->
     <van-tabs v-model:active="active" color="#1989fa">
       <van-tab title="月收益率">

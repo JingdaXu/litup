@@ -25,7 +25,7 @@
       <Operation />
     </van-tab>
     <van-tab title="持仓">
-      <Order /> 
+      <Order />
     </van-tab>
     <van-tab title="观点"> </van-tab>
   </van-tabs>
@@ -44,7 +44,7 @@ export default {
     Profit,
     Contract,
     Operation,
-    Order
+    Order,
   },
   data() {
     return {

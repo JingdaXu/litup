@@ -1,11 +1,11 @@
 <template>
   <div class="detail">
-    <van-nav-bar
+    <!-- <van-nav-bar
       title="持仓详情页"
       left-text="返回"
       left-arrow
       @click-left="onClickLeft"
-    />
+    /> -->
     <van-row class="row1">
       <van-col :span="12" class="text-left">
         <span>{{ detail["symbol"] }}</span>
@@ -87,7 +87,7 @@
 
 <script>
 import { onMounted, ref } from "vue";
-import { useRouter, useRoute } from "vue-router";
+import { useRoute } from "vue-router";
 import { apiGetOrderDetail } from "@/api/order";
 
 export default {
@@ -106,13 +106,7 @@ export default {
     onMounted(() => {
       getApiDetail();
     });
-
-    const router = useRouter();
-    const onClickLeft = () => {
-      router.go(-1);
-    };
-
-    return { detail, onClickLeft };
+    return { detail };
   },
 };
 </script>

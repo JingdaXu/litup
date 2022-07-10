@@ -7,7 +7,12 @@
       finished-text="没有更多了"
       @load="onLoad"
     >
-      <div v-for="(item, index) in list" :key="index" class="list-box">
+      <div
+        v-for="(item, index) in list"
+        :key="index"
+        class="list-box"
+        @click="clickDetails(item, index)"
+      >
         <van-row class="row1">
           <span class="status">{{ item["extra-info"].label1 }}</span>
           <span class="exchange"> {{ item["extra-info"].label2 }} </span>
@@ -64,7 +69,7 @@
 
 <script>
 import { ref } from "vue";
-// import { toRefs } from 'vue'
+import { useRouter } from "vue-router";
 export default {
   name: "MyList",
   props: {
@@ -83,6 +88,10 @@ export default {
     const loading = ref(false);
     const finished = ref(false);
     const isPositive = ref(true);
+    const router = useRouter();
+    const clickDetails = (item) => {
+      router.push({ name: "user", query: { userId: item._id } });
+    };
     const onLoad = () => {
       setTimeout(() => {
         // 加载状态结束
@@ -93,11 +102,13 @@ export default {
         }
       }, 1000);
     };
+
     return {
-      onLoad,
       loading,
       finished,
       isPositive,
+      onLoad,
+      clickDetails,
     };
   },
 };
