@@ -14,8 +14,23 @@
         @click="clickDetails(item, index)"
       >
         <van-row class="row1">
-          <span class="status">{{ item["extra-info"].label1 }}</span>
-          <span class="exchange"> {{ item["extra-info"].label2 }} </span>
+          <span
+            class="status greenBackground"
+            :class="{
+              redBackground: item['extra-info']['direction'] == 'short',
+            }"
+            >{{ item["extra-info"].label1 }}</span
+          >
+          <VanImage
+            class="img"
+            round
+            width="1rem"
+            height="1rem"
+            :src="item['extra-info']['label2-icon']"
+          ></VanImage>
+          <span class="exchange">
+            {{ item["extra-info"].label2 }}
+          </span>
         </van-row>
         <van-row gutter="20" class="row2">
           <van-col span="4">
@@ -38,25 +53,25 @@
             <div class="text">账户资金</div>
           </van-col>
           <van-col span="8" v-if="type == 'monthly'">
-            <div :class="{ red: !isPositive }" class="green">
+            <div :class="{ red: !item.direction == 'long' }" class="green">
               {{ numFilter(item["monthly-yield"]) }}%
             </div>
             <div class="text">月收益率</div>
           </van-col>
           <van-col span="8" v-if="type == 'total'">
-            <div :class="{ red: !isPositive }" class="green">
+            <div :class="{ red: !item.direction == 'long' }" class="green">
               {{ item["total-yield"] * 100 }}%
             </div>
             <div class="text">年收益率</div>
           </van-col>
           <van-col span="8" v-if="type == 'monthly'">
-            <div :class="{ red: !isPositive }" class="green">
+            <div :class="{ red: !item.direction == 'long' }" class="green">
               ￥{{ item["monthly-yield-in-unit"] }}
             </div>
             <div class="text">月收益额</div>
           </van-col>
           <van-col span="8" v-if="type == 'total'">
-            <div :class="{ red: !isPositive }" class="green">
+            <div :class="{ red: !item.direction == 'long' }" class="green">
               ￥{{ item["total-yield-in-unit"] }}
             </div>
             <div class="text">年收益额</div>
@@ -93,7 +108,6 @@ export default {
   setup(props) {
     const loading = ref(false);
     const finished = ref(false);
-    const isPositive = ref(true);
     const router = useRouter();
     const clickDetails = (item) => {
       console.log(item);
@@ -113,7 +127,6 @@ export default {
     return {
       loading,
       finished,
-      isPositive,
       onLoad,
       clickDetails,
     };
@@ -141,9 +154,15 @@ export default {
         padding: 5px;
       }
       .status {
-        background: #ebedf0;
+        color:white;
       }
       .exchange {
+        text-align: left;
+      }
+      .img {
+        text-align: center;
+        margin-left: 10px;
+        margin-top: 5px;
       }
     }
     .row2 {

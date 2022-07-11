@@ -7,7 +7,7 @@
           <div class="contractName">
             {{ contractName(item) }}
           </div>
-          <div class="other rate">{{ item.position }}%</div>
+          <div class="other rate">{{ numFilter(item.position) }}%</div>
           <div class="other price">
             均价 ￥{{ item["avg-price"] + item["price-unit"] }}
           </div>
@@ -30,14 +30,14 @@ export default {
   computed: {},
   methods: {
     contractName(item) {
-      let text = item.direction == "long" ? "多" : "空"
-      let res =
-        item.symbol + item.contract + text;
+      let text = item.direction == "long" ? "多" : "空";
+      let res = item.symbol + item.contract + text;
       return res;
     },
-  },
-  data() {
-    return {};
+    numFilter(value) {
+      const realVal = parseFloat(value * 100).toFixed(2);
+      return realVal;
+    },
   },
 };
 </script>

@@ -27,7 +27,7 @@
     </van-row>
     <van-row class="row3 smallFont">
       <van-col span="8">
-        <div class="">{{ userObj["win-rate"] }}%</div>
+        <div class="">{{ userObj["win-rate"]*100 }}%</div>
         <div class="text">历史胜率</div>
       </van-col>
       <van-col span="8"></van-col>
