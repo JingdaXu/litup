@@ -3,14 +3,13 @@
     <van-row class="row1">
       <van-col :span="12" class="left">
         <span>{{ item.symbol }}-{{ item.contract }}</span>
-        <van-tag type="success">
-          {{
-            item.direction == "long" ? "多" : "空 " + item["margin-level"]
-          }}倍</van-tag
+        <van-tag :type="item.direction == 'long' ? 'success' : 'danger'">
+          {{ item.direction == "long" ? "多" : "空 "
+          }}{{ item["margin-level"] }}倍</van-tag
         >
       </van-col>
       <van-col :span="12" class="right" @click="clickDetails(item, index)">
-        <span class="time">{{ item["latest-action"]}}</span>
+        <span class="time">{{ item["latest-action"] }}</span>
         <!-- <span class="time">{{ $moment(item["latest-action"]).format("YYYY-MM-DD") }}</span> -->
         <span class="arrow"><van-icon name="arrow" /></span>
       </van-col>
@@ -32,7 +31,9 @@
           >￥{{ item["average-price-c"] }}</van-col
         >
         <van-col :span="6">收益</van-col>
-        <van-col :span="6" class="number green">{{ item['pnl-usdt'] }}USDT</van-col>
+        <van-col :span="6" class="number green"
+          >{{ item["pnl-usdt"] }}USDT</van-col
+        >
       </van-row>
     </div>
   </div>
