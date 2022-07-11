@@ -20,10 +20,10 @@
   <!-- TAB -->
   <van-tabs v-model:active="active" color="#1989fa">
     <van-tab title="主页">
-      <Account :userObj='userObj'/>
-      <Profit />
-      <Contract />
-      <Operation />
+      <Account :userObj="userObj" />
+      <Profit :userObj="userObj" />
+      <Contract :userObj="userObj" />
+      <Operation :userObj="userObj" />
     </van-tab>
     <van-tab title="持仓">
       <Order />
@@ -40,7 +40,7 @@ import Operation from "./components/Operation";
 import Order from "./order/order";
 import { apiGetUser } from "@/api/user";
 import { useRoute } from "vue-router";
-import { ref,onMounted } from "vue";
+import { ref, onMounted } from "vue";
 export default {
   name: "MyUser",
   components: {
@@ -53,6 +53,7 @@ export default {
   setup() {
     // 声明变量
     const userObj = ref({});
+    const userActions = ref([]);
     const active = ref(0);
     // 获得用户ID
     const route = useRoute();
@@ -60,15 +61,15 @@ export default {
     const getApi = async () => {
       // 调用户接口
       await apiGetUser(id).then((res) => {
-        console.log(res);
         userObj.value = res.data;
       });
     };
     onMounted(() => {
       getApi();
     });
-    return { userObj, active };
+    return { userObj, userActions, active };
   },
+ 
 };
 </script>
 

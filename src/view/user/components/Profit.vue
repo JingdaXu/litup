@@ -4,10 +4,18 @@
       <van-col :span="8"> <div class="title">收益走势</div> </van-col>
       <van-col :span="16">
         <van-tabs v-model:active="active" color="#1989fa">
-          <van-tab title="总收益率">图表 1</van-tab>
-          <van-tab title="账户资产">图表 2</van-tab>
-          <van-tab title="累计收益">图表 3</van-tab>
-          <van-tab title="月收益率">图表 4</van-tab>
+          <van-tab title="总收益率">
+            <iframe :src="userObj['total-pnl-rate-iframe-url']" />
+          </van-tab>
+          <van-tab title="账户资产">
+            <iframe :src="userObj['account-balance-iframe-url']" />
+          </van-tab>
+          <van-tab title="累计收益">
+            <iframe :src="userObj['total-pnl-iframe-url']" />
+          </van-tab>
+          <van-tab title="月收益率">
+            <iframe :src="userObj['monthly-pnl-iframe-url']" />
+          </van-tab>
         </van-tabs>
       </van-col>
     </van-row>
@@ -18,6 +26,11 @@
 import { ref } from "vue";
 export default {
   name: "MyProfit",
+  props: {
+    userObj: {
+      type: Object,
+    },
+  },
   setup() {
     const active = ref(0);
     return { active };
@@ -31,6 +44,7 @@ export default {
 .module {
   margin-bottom: 5px;
   background: white;
+  min-height: 20vh;
   .title {
     padding: 15px;
     text-align: left;

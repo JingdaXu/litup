@@ -23,7 +23,7 @@
         >${{ detail["average-price-c"] }}</van-col
       >
       <van-col :span="12" class="number green"
-        >{{ detail["pnl"] * 100 }}%</van-col
+        >{{ numFilter(detail["pnl"])}}%</van-col
       >
       <van-col :span="12" class="text">平仓均价</van-col>
       <van-col :span="12" class="text">收益率</van-col>
@@ -98,15 +98,19 @@ export default {
     const id = route.query.orderId;
     const getApiDetail = async () => {
       await apiGetOrderDetail(id).then((res) => {
-        console.log(res);
         detail.value = res.data;
-        console.log(detail, "detail");
       });
     };
     onMounted(() => {
       getApiDetail();
     });
     return { detail };
+  },
+  methods: {
+    numFilter(value) {
+      const realVal = parseFloat(value * 100).toFixed(2);
+      return realVal;
+    },
   },
 };
 </script>

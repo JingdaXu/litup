@@ -1,14 +1,18 @@
 <template>
   <div class="module">
     <div class="title">合约仓位</div>
-    <van-row class="box-list" >
-      <van-col  :key="index" v-for="(item, index) in contractList">
+    <van-row class="box-list">
+      <van-col :key="index" v-for="(item, index) in userObj.positions">
         <div class="box text-left">
-          <div class="contractName">{{ item.contractName }}</div>
-          <div class="other rate">{{ item.rate }}%</div>
-          <div class="other price">均价 ￥{{ item.price }}</div>
-          <div class="other">数量 {{ item.number }}</div>
-          <div class="other">价值 {{ item.value }}</div>
+          <div class="contractName">
+            {{ contractName(item) }}
+          </div>
+          <div class="other rate">{{ item.position }}%</div>
+          <div class="other price">
+            均价 ￥{{ item["avg-price"] + item["price-unit"] }}
+          </div>
+          <div class="other">数量 {{ item.amount }}</div>
+          <div class="other">价值 {{ item.val }}</div>
         </div>
       </van-col>
     </van-row>
@@ -18,39 +22,22 @@
 <script>
 export default {
   name: "MyContract",
+  props: {
+    userObj: {
+      type: Object,
+    },
+  },
+  computed: {},
+  methods: {
+    contractName(item) {
+      let text = item.direction == "long" ? "多" : "空"
+      let res =
+        item.symbol + item.contract + text;
+      return res;
+    },
+  },
   data() {
-    return {
-      contractList: [
-        {
-          contractName: "BCH/USDT永续 多",
-          rate: -51.25,
-          price: 768.11,
-          number: 18.5,
-          value: 185,
-        },
-        {
-          contractName: "BCH/USDT永续 多",
-          rate: -51.25,
-          price: 768.11,
-          number: 18.5,
-          value: 185,
-        },
-        {
-          contractName: "BCH/USDT永续 多",
-          rate: -51.25,
-          price: 768.11,
-          number: 18.5,
-          value: 185,
-        },
-        {
-          contractName: "BCH/USDT永续 多",
-          rate: -51.25,
-          price: 768.11,
-          number: 18.5,
-          value: 185,
-        },
-      ],
-    };
+    return {};
   },
 };
 </script>
@@ -69,24 +56,23 @@ export default {
   .box-list {
     .box {
       border: 1px solid #dcdee0;
-      margin:10px 5px;
-      .contractName{
-        color:@green;
+      margin: 10px 5px;
+      .contractName {
+        color: @green;
         padding: 5px 2px;
         background: #eefff6;
       }
-      .other{
+      .other {
         padding: 3px 10px;
-        font-size:14px;
-        color:@text-color-main2;
+        font-size: 14px;
+        color: @text-color-main2;
       }
-      .rate{
+      .rate {
         font-size: 24px;
         padding: 10px 10px;
-        color:@red;
+        color: @red;
       }
     }
-    
   }
 }
 </style>
