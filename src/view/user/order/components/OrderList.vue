@@ -17,22 +17,22 @@
     <div class="row2">
       <van-row>
         <van-col :span="6">开仓均价</van-col>
-        <van-col :span="6" class="number"
-          >￥{{ item["average-price-o"] }}</van-col
-        >
+        <van-col :span="6" class="number">{{
+          item["average-price-o"]
+        }}</van-col>
         <van-col :span="6">收益率</van-col>
-        <van-col :span="6" class="number green">{{ item.pnl * 100 }}%</van-col>
+        <van-col :span="6" class="number green">{{ numFilter(item.pnl) }}%</van-col>
       </van-row>
     </div>
     <div class="row3">
       <van-row>
         <van-col :span="6">平仓均价</van-col>
-        <van-col :span="6" class="number"
-          >￥{{ item["average-price-c"] }}</van-col
-        >
+        <van-col :span="6" class="number">{{
+          item["average-price-c"]
+        }}</van-col>
         <van-col :span="6">收益</van-col>
         <van-col :span="6" class="number green"
-          >{{ item["pnl-usdt"] }}USDT</van-col
+          >{{ item["pnl-usdt"] }} USDT</van-col
         >
       </van-row>
     </div>
@@ -57,8 +57,14 @@ export default {
     const clickDetails = (item) => {
       router.push({ name: "orderDetail", query: { orderId: item.order } });
     };
+    // 保留小数
+    const numFilter = function (value) {
+      const realVal = parseFloat(value * 100).toFixed(5);
+      return realVal;
+    };
     return {
       clickDetails,
+      numFilter
     };
   },
 };
