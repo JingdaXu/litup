@@ -65,7 +65,7 @@ export default {
   .row3 {
     // margin-top: 15px;
     // margin-bottom: 15px;
-    padding: 15px 0;
+    padding: 15px;
     overflow: hidden;
   }
   .row1 {

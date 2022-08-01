@@ -21,7 +21,9 @@
           item["average-price-o"]
         }}</van-col>
         <van-col :span="6">收益率</van-col>
-        <van-col :span="6" class="number green">{{ $numFilter(item.pnl,2) }}%</van-col>
+        <van-col :span="6" class="number green"
+          >{{ $numFilter(item.pnl, 5) }}%</van-col
+        >
       </van-row>
     </div>
     <div class="row3">
@@ -72,6 +74,7 @@ export default {
   .left {
     font-size: 16px;
     padding: 5px;
+    padding-left: 3px;
     span {
       padding: 2px;
     }

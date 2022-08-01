@@ -43,8 +43,8 @@
             <!-- src="https://fastly.jsdelivr.net/npm/@vant/assets/cat.jpeg" -->
           </van-col>
           <van-col span="20">
-            <div class="text-left">{{ item.nick_name }}</div>
-            <div class="text-left">{{ item.motto }}</div>
+            <div class="text-left nick_name">{{ item.nick_name }}</div>
+            <div class="text-left motto">{{ item.motto }}</div>
           </van-col>
         </van-row>
         <van-row gutter="20" justify="space-between" class="row3">
@@ -165,6 +165,13 @@ export default {
       margin-bottom: 10px;
       padding-bottom: 10px;
       border-bottom: 1px solid #ebedf0;
+      .nick_name{
+        font-size:18px;
+        margin-bottom: 5px;
+      }
+      .motto{
+        color:@green;
+      }
     }
     .row3 {
       margin: 10px 0;

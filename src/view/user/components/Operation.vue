@@ -9,10 +9,10 @@
       :key="index"
     >
       <van-step class="text-left">
-        <p>
+        <p class="black">
           {{ item["feeds-text-template"] }}
         </p>
-        <p>{{ item["date"] }}</p>
+        <p class="black">{{ item["date"] }}</p>
       </van-step>
     </van-steps>
   </div>
