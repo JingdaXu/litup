@@ -12,11 +12,15 @@ import { Tag } from 'vant';
 import { NavBar } from 'vant';
 import { Divider } from 'vant';
 
-// import moment from "moment";
 
 const app = createApp(App);
+// 传入value,保留number位小数
+function numFilter(value,number) {
+    const realVal = parseFloat(value * 100).toFixed(number);
+    return realVal;
+}
+app.config.globalProperties.$numFilter = numFilter;
 
-// app.prototype.$moment = moment;
 app.use(Cell);
 app.use(CellGroup);
 app.use(Button);

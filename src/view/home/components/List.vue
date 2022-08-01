@@ -54,7 +54,7 @@
           </van-col>
           <van-col span="8" v-if="type == 'monthly'">
             <div :class="{ red: !item.direction == 'long' }" class="green">
-              {{ numFilter(item["monthly-yield"]) }}%
+              {{ $numFilter(item["monthly-yield"],2) }}%
             </div>
             <div class="text">月收益率</div>
           </van-col>
@@ -100,10 +100,6 @@ export default {
     },
   },
   methods: {
-    numFilter(value) {
-      const realVal = parseFloat(value * 100).toFixed(2);
-      return realVal;
-    },
   },
   setup(props) {
     const loading = ref(false);

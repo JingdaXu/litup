@@ -1,8 +1,10 @@
 
 <script >
 import orderList from "./components/OrderList";
-import { onMounted, onUpdated, ref, reactive } from "vue";
+import { onMounted, onUpdated, ref } from "vue";
 import { apiGetOrder } from "@/api/order";
+import { useRoute } from "vue-router";
+
 export default {
   name: "orderPage",
   components: {
@@ -11,10 +13,13 @@ export default {
   setup() {
     let list = ref([]);
     const active = ref(0);
+    // 获得用户ID
+    const route = useRoute();
+    const id = route.query.userId;
+    const filter = active.value === 0 ? "unfinished" : "finished";
     const getApi = async () => {
-      const params = reactive({
-        filter: active.value === 0 ? "unfinished" : "finished",
-      });
+      const params = `${id}?filter?${filter}`;
+      console.log(params)
       await apiGetOrder(params).then((res) => {
         list.value = res.data;
       });
@@ -81,5 +86,6 @@ export default {
 @import "@/assets/less/varibles.less";
 .container {
   background: white;
+  padding-top: 10px;
 }
 </style>

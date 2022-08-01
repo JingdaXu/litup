@@ -7,7 +7,7 @@
           <div class="contractName">
             {{ contractName(item) }}
           </div>
-          <div class="other rate">{{ numFilter(item.position) }}%</div>
+          <div class="other rate">{{ $numFilter(item.position, 2) }}%</div>
           <div class="other price">
             均价 ￥{{ item["avg-price"] + item["price-unit"] }}
           </div>
@@ -34,10 +34,10 @@ export default {
       let res = item.symbol + item.contract + text;
       return res;
     },
-    numFilter(value) {
-      const realVal = parseFloat(value * 100).toFixed(2);
-      return realVal;
-    },
+    // $numFilter(value) {
+    //   const realVal = parseFloat(value * 100).toFixed(2);
+    //   return realVal;
+    // },
   },
 };
 </script>

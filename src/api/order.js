@@ -1,11 +1,10 @@
 import service from "@/service";
 
 // 获取合约信息
-export function apiGetOrder(params) {
+export function apiGetOrder(data) {
     return service({
-        url: '/api/order/of_user',
+        url: `/api/order/${data}`,
         method: 'get',
-        data:params
     })
 }
 // 获得合约详情

@@ -17,7 +17,7 @@
         <div class="text">累计收益</div>
       </van-col>
       <van-col span="8">
-        <div class="green">￥{{ numFilter(userObj["monthly-yield"]) }}%</div>
+        <div class="green">￥{{ $numFilter(userObj["monthly-yield"], 2) }}%</div>
         <div class="text">月收益率</div>
       </van-col>
       <van-col span="8">
@@ -27,7 +27,7 @@
     </van-row>
     <van-row class="row3 smallFont">
       <van-col span="8">
-        <div class="">{{ userObj["win-rate"]*100 }}%</div>
+        <div class="">{{ userObj["win-rate"] * 100 }}%</div>
         <div class="text">历史胜率</div>
       </van-col>
       <van-col span="8"></van-col>
@@ -44,12 +44,7 @@ export default {
       type: Object,
     },
   },
-  methods: {
-    numFilter(value) {
-      const realVal = parseFloat(value*100).toFixed(2);
-      return realVal;
-    },
-  },
+  methods: {},
   setup() {},
 };
 </script>

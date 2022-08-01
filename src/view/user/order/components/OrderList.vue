@@ -21,7 +21,7 @@
           item["average-price-o"]
         }}</van-col>
         <van-col :span="6">收益率</van-col>
-        <van-col :span="6" class="number green">{{ numFilter(item.pnl) }}%</van-col>
+        <van-col :span="6" class="number green">{{ $numFilter(item.pnl,2) }}%</van-col>
       </van-row>
     </div>
     <div class="row3">
@@ -57,14 +57,8 @@ export default {
     const clickDetails = (item) => {
       router.push({ name: "orderDetail", query: { orderId: item.order } });
     };
-    // 保留小数
-    const numFilter = function (value) {
-      const realVal = parseFloat(value * 100).toFixed(5);
-      return realVal;
-    };
     return {
       clickDetails,
-      numFilter
     };
   },
 };

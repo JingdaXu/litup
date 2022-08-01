@@ -23,7 +23,7 @@
         >${{ detail["average-price-c"] }}</van-col
       >
       <van-col :span="12" class="number green"
-        >{{ numFilter(detail["pnl"])}}%</van-col
+        >{{ $numFilter(detail["pnl"],2)}}%</van-col
       >
       <van-col :span="12" class="text">平仓均价</van-col>
       <van-col :span="12" class="text">收益率</van-col>
@@ -107,10 +107,6 @@ export default {
     return { detail };
   },
   methods: {
-    numFilter(value) {
-      const realVal = parseFloat(value * 100).toFixed(2);
-      return realVal;
-    },
   },
 };
 </script>
