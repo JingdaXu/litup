@@ -16,9 +16,9 @@ export default {
     // 获得用户ID
     const route = useRoute();
     const id = route.query.userId;
-    const filter = active.value === 0 ? "unfinished" : "finished";
     const getApi = async () => {
-      const params = `${id}?filter?${filter}`;
+      const filter = active.value === 0 ? "unfinished" : "finished";
+      const params = `${id}?filter=${filter}`;
       await apiGetOrder(params).then((res) => {
         list.value = res.data;
       });

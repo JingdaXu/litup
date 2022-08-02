@@ -15,6 +15,9 @@
           <div class="other">价值 {{ item.val }}</div>
         </div>
       </van-col>
+      <van-col v-if="userObj.positions" class="empty"
+        >{{ userObj.nick_name }}暂无持仓</van-col
+      >
     </van-row>
   </div>
 </template>
@@ -34,10 +37,6 @@ export default {
       let res = item.symbol + item.contract + text;
       return res;
     },
-    // $numFilter(value) {
-    //   const realVal = parseFloat(value * 100).toFixed(2);
-    //   return realVal;
-    // },
   },
 };
 </script>
@@ -72,6 +71,12 @@ export default {
         padding: 10px 10px;
         color: @red;
       }
+    }
+    .empty {
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      line-height: 130px;
     }
   }
 }

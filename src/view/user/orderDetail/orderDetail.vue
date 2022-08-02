@@ -43,7 +43,7 @@
     <van-row class="row2">
       <van-col :span="6" class="text2">持仓价值（最大时）</van-col>
       <van-col :span="6" class="number"
-        >{{ $numFilter(detail["max-holding-value"], 5) }}BNB</van-col
+        >{{ $numFilter(detail["max-holding-value"], 5) }}{{detail['base-asset']}}</van-col
       >
       <van-col :span="6" class="text2">手续费</van-col>
       <van-col :span="6" class="number">${{ detail["fees"] }}</van-col>
