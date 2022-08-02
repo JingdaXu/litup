@@ -15,7 +15,7 @@
           <div class="other">价值 {{ item.val }}</div>
         </div>
       </van-col>
-      <van-col v-if="userObj.positions" class="empty"
+      <van-col v-if="userObj.positions.length == 0" class="empty"
         >{{ userObj.nick_name }}暂无持仓</van-col
       >
     </van-row>
