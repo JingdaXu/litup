@@ -19,7 +19,6 @@ export default {
     const filter = active.value === 0 ? "unfinished" : "finished";
     const getApi = async () => {
       const params = `${id}?filter?${filter}`;
-      console.log(params)
       await apiGetOrder(params).then((res) => {
         list.value = res.data;
       });

@@ -1,18 +1,11 @@
 <template>
   <div class="detail">
-    <!-- <van-nav-bar
-      title="持仓详情页"
-      left-text="返回"
-      left-arrow
-      @click-left="onClickLeft"
-    /> -->
     <van-row class="row1">
       <van-col :span="12" class="text-left">
         <span>{{ detail["symbol"] }}</span>
-        <van-tag :type="detail['direction'] == 'long' ? 'sucess' : 'danger'">
-          {{
-            detail["direction"] == "long" ? "多" : "空 " + detail["max-level"]
-          }}倍</van-tag
+        <van-tag :type="detail.direction == 'long' ? 'success' : 'danger'">
+          {{ detail.direction == "long" ? "多" : "空 "
+          }}{{ detail["margin-level"] }}倍</van-tag
         >
       </van-col>
     </van-row>
@@ -23,7 +16,7 @@
         >${{ detail["average-price-c"] }}</van-col
       >
       <van-col :span="12" class="number green"
-        >{{ $numFilter(detail["pnl"],2)}}%</van-col
+        >{{ $numFilter(detail["pnl"], 2) }}%</van-col
       >
       <van-col :span="12" class="text">平仓均价</van-col>
       <van-col :span="12" class="text">收益率</van-col>
@@ -32,9 +25,10 @@
       <van-col :span="12" class="number"
         >${{ detail["average-price-o"] }}</van-col
       >
-      <van-col :span="12" class="number green"
-        >+{{ detail["pnl-usdt"] }}</van-col
-      >
+      <van-col :span="12" class="number green" :class="{'red':detail['pnl-usdt']<0 }">
+      {{
+        detail["pnl-usdt"]
+      }}</van-col>
       <van-col :span="12" class="text">开仓均价</van-col>
       <van-col :span="12" class="text">收益</van-col>
     </van-row>
@@ -42,21 +36,23 @@
 
     <van-row class="row2">
       <van-col :span="6" class="text2">持仓量（最大时）</van-col>
-      <van-col :span="6" class="number">+{{ detail["max-holding"] }}张</van-col>
+      <van-col :span="6" class="number">{{ detail["max-holding"] }}张</van-col>
       <van-col :span="6" class="text2">交易额</van-col>
       <van-col :span="6" class="number">${{ detail["volume"] }}</van-col>
     </van-row>
     <van-row class="row2">
       <van-col :span="6" class="text2">持仓价值（最大时）</van-col>
       <van-col :span="6" class="number"
-        >+{{ detail["max-holding-value"] }}BNB</van-col
+        >{{ $numFilter(detail["max-holding-value"], 5) }}BNB</van-col
       >
       <van-col :span="6" class="text2">手续费</van-col>
       <van-col :span="6" class="number">${{ detail["fees"] }}</van-col>
     </van-row>
     <van-row class="row2">
       <van-col :span="6" class="text2">保证金（最大时）</van-col>
-      <van-col :span="6" class="number">+{{ detail["margin"] }}</van-col>
+      <van-col :span="6" class="number">{{
+        $numFilter(detail["margin"], 5)
+      }}</van-col>
     </van-row>
     <van-divider />
 
@@ -67,14 +63,12 @@
       :key="index"
     >
       <van-col :span="6">
-        <van-icon
-          name="add-o"
-          :class="{ red: item.type == 'open', green: item.type == 'close' }"
-        />
-        {{ item.date }}</van-col
-      >
-      <van-col :span="6">{{ item.value }}张</van-col>
-      <van-col :span="6">${{ item.amount }}</van-col>
+        <van-icon v-if="item.type == 'open'" name="minus" class="red" />
+        <van-icon v-if="item.type == 'close'" name="plus" class="green" />
+        {{ item.date }}
+      </van-col>
+      <van-col :span="6">{{ item.amount }}张</van-col>
+      <van-col :span="6">${{ $numFilter(item.value, 5) }}</van-col>
       <van-col
         :span="6"
         :class="{ red: item.type == 'open', green: item.type == 'close' }"
@@ -106,8 +100,7 @@ export default {
     });
     return { detail };
   },
-  methods: {
-  },
+  methods: {},
 };
 </script>
 
