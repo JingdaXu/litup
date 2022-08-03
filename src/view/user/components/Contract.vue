@@ -2,12 +2,19 @@
   <div class="module">
     <div class="title">合约仓位</div>
     <van-row class="box-list">
-      <van-col :key="index" v-for="(item, index) in userObj.positions">
+      <van-col
+        v-if="userObj.positions && userObj.positions.length == 0"
+        class="empty"
+        >{{ userObj.nick_name }}暂无持仓</van-col
+      >
+      <van-col :key="index" v-for="(item, index) in userObj.positions" v-else>
         <div class="box text-left">
           <div class="contractName">
             {{ contractName(item) }}
           </div>
-          <div class="other rate">{{ $numFilter(Number(item.position), 2) }}%</div>
+          <div class="other rate">
+            {{ $numFilter(Number(item.position), 2) }}%
+          </div>
           <div class="other price">
             均价 ￥{{ item["avg-price"] + item["price-unit"] }}
           </div>
@@ -15,9 +22,6 @@
           <div class="other">价值 {{ item.val }}</div>
         </div>
       </van-col>
-      <van-col v-if="userObj.positions && userObj.positions.length == 0" class="empty"
-        >{{ userObj.nick_name }}暂无持仓</van-col
-      >
     </van-row>
   </div>
 </template>
