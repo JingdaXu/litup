@@ -16,7 +16,7 @@
         >${{ detail["average-price-c"] }}</van-col
       >
       <van-col :span="12" class="number green"
-        >{{ $numFilter(detail["pnl"], 2) }}%</van-col
+        >{{ $numFilter(Number(detail["pnl"]), 2) }}%</van-col
       >
       <van-col :span="12" class="text">平仓均价</van-col>
       <van-col :span="12" class="text">收益率</van-col>
@@ -43,7 +43,7 @@
     <van-row class="row2">
       <van-col :span="6" class="text2">持仓价值（最大时）</van-col>
       <van-col :span="6" class="number"
-        >{{ $numFilter(detail["max-holding-value"], 5) }}{{detail['base-asset']}}</van-col
+        >{{ $numFilter(Number(detail["max-holding-value"]), 5) }}{{detail['base-asset']}}</van-col
       >
       <van-col :span="6" class="text2">手续费</van-col>
       <van-col :span="6" class="number">${{ detail["fees"] }}</van-col>
@@ -51,7 +51,7 @@
     <van-row class="row2">
       <van-col :span="6" class="text2">保证金（最大时）</van-col>
       <van-col :span="6" class="number">{{
-        $numFilter(detail["margin"], 5)
+        $numFilter(Number(detail["margin"]), 5)
       }}</van-col>
     </van-row>
     <van-divider />
@@ -68,7 +68,7 @@
         {{ item.date }}
       </van-col>
       <van-col :span="6">{{ item.amount }}张</van-col>
-      <van-col :span="6">${{ $numFilter(item.value, 5) }}</van-col>
+      <van-col :span="6">${{ $numFilter(Number(item.value), 5) }}</van-col>
       <van-col
         :span="6"
         :class="{ red: item.type == 'open', green: item.type == 'close' }"

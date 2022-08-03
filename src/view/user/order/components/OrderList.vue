@@ -22,7 +22,7 @@
         }}</van-col>
         <van-col :span="6">收益率</van-col>
         <van-col :span="6" class="number green"
-          >{{ $numFilter(item.pnl, 5) }}%</van-col
+          >{{ $numFilter(Number(item.pnl), 5) }}%</van-col
         >
       </van-row>
     </div>

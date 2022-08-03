@@ -16,37 +16,32 @@ export default {
     // 获得用户ID
     const route = useRoute();
     const id = route.query.userId;
+    const filter = active.value === 0 ? "unfinished" : "finished";
+    const getApi = async () => {
+      const params = `${id}?filter?${filter}`;
+      await apiGetOrder(params).then((res) => {
+        list.value = res.data;
+      });
+    };
+    onMounted(() => {
+      getApi();
+    });
+    onUpdated(() => {
+      getApi();
+    });
     const loading = ref(false);
     const finished = ref(false);
-    // 加载数据
-    const onLoad = async () => {
-      const res = await getApi();
-      if (res) {
-        console.log(res)
+    const onLoad = () => {
+      setTimeout(() => {
         // 加载状态结束
         loading.value = false;
         // 数据全部加载完成
-        if (list.value.length >= 1) {
+        if (list.value.length >= 2) {
           finished.value = true;
         }
-      }
+      }, 1000);
     };
-    // 请求接口数据
-    const getApi = async () => {
-      const filter = active.value === 0 ? "unfinished" : "finished";
-      const params = `${id}?filter=${filter}`;
-      const res = await apiGetOrder(params);
-      if (res.data) {
-        list.value = res.data;
-      }
-    };
-    onMounted(() => {
-      onLoad();
-    });
-    // 更新加载数据
-    onUpdated(() => {
-      onLoad();
-    });
+
     return {
       list,
       active,

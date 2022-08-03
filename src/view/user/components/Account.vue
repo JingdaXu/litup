@@ -17,7 +17,7 @@
         <div class="text">累计收益</div>
       </van-col>
       <van-col span="8">
-        <div class="green">￥{{ $numFilter(userObj["monthly-yield"], 2) }}%</div>
+        <div class="green">￥{{ $numFilter(Number(userObj["monthly-yield"]), 2) }}%</div>
         <div class="text">月收益率</div>
       </van-col>
       <van-col span="8">

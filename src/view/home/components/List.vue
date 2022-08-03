@@ -54,7 +54,7 @@
           </van-col>
           <van-col span="8" v-if="type == 'monthly'">
             <div :class="{ red: !item.direction == 'long' }" class="green">
-              {{ $numFilter(item["monthly-yield"],2) }}%
+              {{ $numFilter(Number(item["monthly-yield"]),2) }}%
             </div>
             <div class="text">月收益率</div>
           </van-col>
