@@ -9,10 +9,10 @@
       :key="index"
     >
       <van-step class="text-left">
-        <p class="black">
+        <p class="black content">
           {{ item["feeds-text-template"] }}
         </p>
-        <p class="black">{{ item["date"] }}</p>
+        <p class="black content">{{ item["date"] }}</p>
       </van-step>
     </van-steps>
   </div>
@@ -71,5 +71,8 @@ export default {
   padding: 15px;
   text-align: left;
   border-bottom: 1px solid @grey;
+}
+.content {
+  margin: 0;
 }
 </style>

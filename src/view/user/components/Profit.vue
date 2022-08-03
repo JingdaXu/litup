@@ -2,7 +2,7 @@
   <div class="module">
     <van-row>
       <van-col :span="8"> <div class="title">收益走势</div> </van-col>
-      <van-col :span="16">
+      <van-col :span="24">
         <van-tabs v-model:active="active" color="#1989fa">
           <van-tab title="总收益率">
             <iframe :src="userObj['total-pnl-rate-iframe-url']" class="iframe"/>
