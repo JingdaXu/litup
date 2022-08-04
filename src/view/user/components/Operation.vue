@@ -36,7 +36,8 @@ export default {
     const id = route.query.userId;
     // 调用户动作接口
     const getApi = async () => {
-      await apiGetUserActions(id).then((res) => {
+      let res = await apiGetUserActions(id);
+      if (res) {
         userActions.value = res.data;
         userActions.value.forEach((item) => {
           let str = item["feeds-text-template"];
@@ -52,7 +53,7 @@ export default {
           str = str.replace("{deal-amount}", substitutes["deal-amount"]);
           item["feeds-text-template"] = str;
         });
-      });
+      }
     };
     onMounted(() => {
       getApi();
